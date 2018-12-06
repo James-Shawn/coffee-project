@@ -1,33 +1,45 @@
 "use strict"
 
-function renderCoffee(coffee) {
-    var html = '<tr class="coffee">';
-    html += '<td>' + coffee.id + '</td>';
-    html += '<td>' + coffee.name + '</td>';
-    html += '<td>' + coffee.roast + '</td>';
-    html += '</tr>';
-
-    return html;
+// renders the html for each individual coffee item
+function renderCoffeeItem(coffee) {
+    var li = "\t<li class=\"coffee-item\">";
+    li += "<span class=\"coffee-item-name\">" + coffee.name + "</span>";
+    li += "\t<span class=\"coffee-item-roast\">" + coffee.roast + "</span>";
+    li += "</li>\n";
+    return li;
 }
 
-function renderCoffees(coffees) {
-    var html = '';
-    for(var i = coffees.length - 1; i >= 0; i--) {
-        html += renderCoffee(coffees[i]);
-    }
-    return html;
-}
-
-function updateCoffees(e) {
-    e.preventDefault(); // don't submit the form, we just want to update the data
-    var selectedRoast = roastSelection.value;
-    var filteredCoffees = [];
-    coffees.forEach(function(coffee) {
-        if (coffee.roast === selectedRoast) {
-            filteredCoffees.push(coffee);
-        }
+// renders the html for an entire list of coffee items
+function renderCoffeeList(coffeeList) {
+    var ul = "<ul>\n";
+    coffeeList.forEach(function(item){
+      ul += renderCoffeeItem(item);
     });
-    tbody.innerHTML = renderCoffees(filteredCoffees);
+    ul += "</ul>";
+    return ul;
+}
+
+function initCoffeeTable(coffeeList){
+  var coffeeTable = {
+    rightCol: [],
+    leftCol: [],
+  };
+
+  for(var i = 0; i < coffeeList.length; i+=2){
+    coffeeTable.leftCol.push(coffeeList[i]);
+    if(i + 1 < coffeeList.length){
+      coffeeTable.rightCol.push(coffeeList[i + 1]);
+    }
+  }
+
+  return coffeeTable;
+}
+
+function updateCoffeeList(table) {
+    var leftCol = document.getElementById("coffee-list-col-0");
+    var rightCol = document.getElementById("coffee-list-col-1");
+    leftCol.innerHTML = renderCoffeeList(table.leftCol);
+    rightCol.innerHTML = renderCoffeeList(table.rightCol);
 }
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
@@ -48,10 +60,10 @@ var coffees = [
     {id: 14, name: 'French', roast: 'dark'},
 ];
 
-var tbody = document.querySelector('#coffees');
-var submitButton = document.querySelector('#submit');
-var roastSelection = document.querySelector('#roast-selection');
-
-tbody.innerHTML = renderCoffees(coffees);
-
-submitButton.addEventListener('click', updateCoffees);
+// var tbody = document.querySelector('#coffees');
+// var submitButton = document.querySelector('#submit');
+// var roastSelection = document.querySelector('#roast-selection');
+//
+// tbody.innerHTML = renderCoffees(coffees);
+//
+// submitButton.addEventListener('click', updateCoffees);
