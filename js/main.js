@@ -60,6 +60,8 @@ var coffees = [
     {id: 14, name: 'French', roast: 'dark'},
 ];
 
+// render the coffee table upon page load
+updateCoffeeList(initCoffeeTable(coffees));
 // var tbody = document.querySelector('#coffees');
 // var submitButton = document.querySelector('#submit');
 // var roastSelection = document.querySelector('#roast-selection');
