@@ -3,12 +3,18 @@
 }
 
 body {
-  font-family: "Arial", "Helvetica, sans-serif"
+  font-family: "Arial", "Helvetica, sans-serif";
+    font-size: 20px;
 }
 
 table {
     border-collapse: collapse;
     margin: 15px 0;
+}
+
+li
+{
+    list-style-type: none;
 }
 
 td, th {
@@ -24,6 +30,8 @@ select
 input
 {
     width: 100%;
+    border-width: 0.7px;
+    border-color: black;
 }
 
 hr
@@ -75,4 +83,19 @@ hr
 {
     margin-top: 2px;
     margin-bottom: 15px;
+}
+
+
+
+.coffee-item-name
+{
+    font-size: large;
+    font-weight: bold;
+
+}
+
+.coffee-item-roast
+{
+    font-size: small;
+    opacity: 0.5;
 }
