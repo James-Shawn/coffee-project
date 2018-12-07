@@ -11,109 +11,111 @@
       <hr>
     </header>
     <main class="container">
-      <div class="row">
+    <div class="row">
+      <!-- <div class="row"> -->
+      <div class="column col-50">
         <div id="coffee-list">
-          <div id="coffee-list-col-0" class="column col-25">
+          <div id="coffee-list-col-0" class="column col-50">
             <!-- in here, render list items -->
           </div>
-          <div id="coffee-list-col-1" class="column col-25">
+          <div id="coffee-list-col-1" class="column col-50">
             <!-- in here render spill-over list items -->
           </div>
         </div>
-        <div id="form" class="column col-50">
-          <!-- Form stuff goes here -->
-
-          <div class="row">
-            <div class="default-margin">
-              <h6>Roast</h6>
-            </div>
-            <div class="default-margin">
-              <!-- dropdown menu -->
-              <select name="Roast types">
-                  <ul>
-                      <li>
-                          <option id="allR">
-                              All
-                          </option>
-                      </li>
-                      <li>
-                          <option id="lightR">
-                              Light Roast
-                          </option>
-                      </li>
-                      <li>
-                          <option id="mediumR">
-                              Medium Roast
-                          </option>
-                      </li>
-                      <li>
-                          <option id="darkR">
-                              Dark Roast
-                          </option>
-                      </li>
-                  </ul>
-              </select>
-            </div>
-            <div class="default-margin">
-              <h6>Coffee Name</h6>
-            </div>
-            <div class="default-margin">
-              <!-- text field -->
-                <input name="Roast Search" id="rSearch" type="text">
-            </div>
-            <div class="default-margin">
-              <!-- submit button -->
-                <div class="btn text-center default-margin">
-                    Submit
-                </div>
-            </div>
+      </div>
+      <!-- Form stuff goes here -->
+      <div id="form" class="column col-50">
+      <div class="row">
+        <div class="default-margin">
+          <h6>Roast</h6>
+        </div>
+        <div class="default-margin">
+          <!-- dropdown menu -->
+          <select name="Roast types">
+              <ul>
+                  <li>
+                      <option id="allR">
+                          All
+                      </option>
+                  </li>
+                  <li>
+                      <option id="lightR">
+                          Light Roast
+                      </option>
+                  </li>
+                  <li>
+                      <option id="mediumR">
+                          Medium Roast
+                      </option>
+                  </li>
+                  <li>
+                      <option id="darkR">
+                          Dark Roast
+                      </option>
+                  </li>
+              </ul>
+          </select>
+        </div>
+        <div class="default-margin">
+            <h6>Coffee Name</h6>
           </div>
-          <div class="row">
-            <div class="text-center">
-              <hr>
-              <h2>Add a Coffee</h2>
-            </div>
-            <div class="default-margin">
-              <h6>Roast</h6>
-            </div>
-            <div class="default-margin">
-              <!-- dropdown menu -->
-              <select name="Roast types">
-                <ul>
-                    <li>
-                        <option id="lightR">
-                            Light Roast
-                        </option>
-                    </li>
-                    <li>
-                        <option id="mediumR">
-                            Medium Roast
-                        </option>
-                    </li>
-                    <li>
-                        <option id="darkR">
-                            Dark Roast
-                        </option>
-                    </li>
-                </ul>
-              </select>
-            </div>
-            <div class="default-margin">
-              <h6>Name</h6>
-            </div>
-            <div class="default-margin">
-              <!-- text field -->
-                <input name="Roast Search" id="rSearch" type="text">
-            </div>
-            <div>
-              <!-- submit button -->
-                <div class="default-margin btn text-center">
-                    Submit
-                </div>
-            </div>
+          <div class="default-margin">
+            <!-- text field -->
+              <input name="Roast Search" id="rSearch" type="text">
+          </div>
+          <div class="default-margin">
+            <!-- submit button -->
+              <div class="btn text-center default-margin">
+                  Submit
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="text-center">
+            <hr>
+            <h2>Add a Coffee</h2>
+          </div>
+          <div class="default-margin">
+            <h6>Roast</h6>
+          </div>
+          <div class="default-margin">
+            <!-- dropdown menu -->
+            <select name="Roast types">
+              <ul>
+                  <li>
+                      <option id="lightR">
+                          Light Roast
+                      </option>
+                  </li>
+                  <li>
+                      <option id="mediumR">
+                          Medium Roast
+                      </option>
+                  </li>
+                  <li>
+                      <option id="darkR">
+                          Dark Roast
+                      </option>
+                  </li>
+              </ul>
+            </select>
+          </div>
+          <div class="default-margin">
+            <h6>Name</h6>
+          </div>
+          <div class="default-margin">
+            <!-- text field -->
+              <input name="Roast Search" id="rSearch" type="text">
+          </div>
+          <div>
+            <!-- submit button -->
+              <div class="default-margin btn text-center">
+                  Submit
+              </div>
           </div>
         </div>
       </div>
+    </div>
     </main>
     <script src="js/main.js"></script>
 </body>

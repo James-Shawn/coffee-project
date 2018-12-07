@@ -20,7 +20,7 @@ function renderCoffeeItem(coffee, styles) {
     var randclass = "";
     // end
 
-    var li = "\t<div class=\"row row-48 coffee-item\">";
+    var li = "<div class=\"row-48 coffee-item\">\n";
     li += "<span class=\"column col-50 coffee-item-name\">" + coffee.name + "</span>";
     li += "<span class=\"column col-50 coffee-item-roast "+ applyRandomClassFrom(styles) +"\">"
           + coffee.roast
@@ -31,11 +31,11 @@ function renderCoffeeItem(coffee, styles) {
 
 // renders the html for an entire list of coffee items
 function renderCoffeeList(coffeeList, styles) {
-    var ul = "<ul>\n";
+    var ul = "<div class=\"row coffee-item\">\n";
     coffeeList.forEach(function(item){
       ul += renderCoffeeItem(item, styles);
     });
-    ul += "</ul>";
+    ul += "</div>";
     return ul;
 }
 
