@@ -76,20 +76,28 @@ var textfieldSelect = function textFieldListener(event){
 var btnSelect = function btnListener(event){
   switch(event.target.id){
     case "submBtn0":
-      /* debug */console.log("0");
+
       var selectRoast0 = document.getElementById('selectR0');
       var inputValue0 = document.getElementById('rSearch0').value;
+
       console.log(inputValue0);
       console.log(event.target.id);
+      console.log(dropdownSelectState);
+
       break;
     case "submBtn1":
-      /* debug */console.log("1");
+
       // 1. grab the roast id (no id yet)
       var selectRoast1 = document.getElementById('selectR1');
       // 2. grab the value of the text field
       var inputValue1 = document.getElementById('rSearch1').value;
+
       console.log(inputValue1);
+      console.log(event.target.id);
+      console.log(dropdownSelectState);
+
       // 3. make a coffee object and add it to the list - coffees
+
       break;
     default:
       /* debug */console.log('option not found');
@@ -148,23 +156,28 @@ updateCoffeeList(initCoffeeTable(coffees), styles);
 
 // Variables to sort by input and button ID's, to input them into click listeners and eventually keypress listeners
 
-var inputListener = document.getElementById('rSearch0');
-var btnEListener = document.getElementById('submBtn0');
+var inputListener0 = document.getElementById('rSearch0');
+var btnEListener0 = document.getElementById('submBtn0');
 
 var inputListener1 = document.getElementById('rSearch1');
 var btnEListener1 = document.getElementById('submBtn1');
 
-inputListener.addEventListener('click', textfieldSelect, false);
-//console.log(inputListener);
-btnEListener.addEventListener('click', btnSelect, false);
-//console.log(btnEListener);
-inputListener1.addEventListener('click', textfieldSelect, false);
-//console.log(inputListener);
+//inputListener.addEventListener('click', textfieldSelect, false);
+
+btnEListener0.addEventListener('click', btnSelect, false);
+
+//inputListener1.addEventListener('click', textfieldSelect, false);
+
 btnEListener1.addEventListener('click', btnSelect, false);
-//console.log(btnEListener);
 
 // watch the dropdown menue
 document.addEventListener("DOMContentLoaded", function(){
   document.querySelector("select[name='roast-types-search']").onchange=dropdownSelect;
   document.querySelector("select[name='roast-types-add']").onchange=dropdownSelect;
+}, false);
+
+inputListener0.addEventListener('keyup', function(event){
+  console.log(
+    document.getElementById(event.target.id)
+    .value);
 }, false);
