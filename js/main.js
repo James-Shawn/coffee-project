@@ -50,27 +50,29 @@ function initCoffeeTable(coffeeList){
   return coffeeTable;
 }
 
-var textfieldSelect = function textFieldListener(id){
-
-    switch(id.explicitOriginalTarget.id){
+var textfieldSelect = function textFieldListener(event){
+    switch(event.target.id){
       case "rSearch0":
         console.log("0");
         break;
       case "rSearch1":
         console.log("1");
         break;
+      default:
+        console.log('option not found');
     }
 }
 
-var btnSelect = function btnListener(id){
-
-  switch(id.explicitOriginalTarget.id){
+var btnSelect = function btnListener(event){
+  switch(event.target.id){
     case "submBtn0":
       console.log("0");
       break;
     case "submBtn1":
       console.log("1");
       break;
+    default:
+      console.log('option not found');
   }
 }
 
@@ -128,3 +130,12 @@ inputListener1.addEventListener('click', textfieldSelect, false);
 //console.log(inputListener);
 btnEListener1.addEventListener('click', btnSelect, false);
 //console.log(btnEListener);
+
+// var inputTextListener = document.getElementById('rSearch0');
+//
+// inputTextListener.addEventListener('onkeyup', function(){
+//
+//     var inputText = document.querySelector('input[name="Roast Search"]').value.onchange= changeEventHandler;
+//     console.log(inputText);
+//
+// }, false);
