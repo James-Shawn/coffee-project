@@ -7,6 +7,7 @@ function applyRandomClassFrom(styles){
   return styles[r];
 }
 
+
 // renders the html for each individual coffee item
 // This function is a mini css compiler
 function renderCoffeeItem(coffee, styles) {
@@ -61,6 +62,17 @@ var dropdownSelectState = {
   add: {
     option: "",
   },
+}
+
+function initdropdownSelectState(){
+    dropdownSelectState = {
+        search: {
+            option: "All",
+        },
+        add: {
+            option: "Light Roast",
+        },
+    }
 }
 
 var textfieldSelect = function textFieldListener(event){
@@ -199,6 +211,8 @@ var styles = [
     'roast-option5',
     'roast-option6',
 ];
+
+initdropdownSelectState();
 
 // render the coffee table upon page load
 updateCoffeeList(initCoffeeTable(coffees), styles);
