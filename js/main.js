@@ -1,19 +1,39 @@
 "use strict"
 
+// this function is a subcomponant of a loop
+function applyRandomClassFrom(styles){
+  var r = Math.floor( (Math.random()*100)%6 + 1) -1;
+  /* debug */ console.log(r);
+  /* debug */
+  /* debug */
+  /* debug */
+  /* debug */
+  /* debug */
+  return styles[r];
+}
+
 // renders the html for each individual coffee item
-function renderCoffeeItem(coffee) {
-    var li = "\t<li class=\"coffee-item\">";
-    li += "<span class=\"coffee-item-name\">" + coffee.name + "</span>";
-    li += "\t<span class=\"coffee-item-roast\">" + coffee.roast + "</span>";
-    li += "</li>\n";
+// This function is a mini css compiler
+function renderCoffeeItem(coffee, styles) {
+
+    // debug
+    var randclass = "";
+    // end
+
+    var li = "\t<div class=\"row row-48 coffee-item\">";
+    li += "<span class=\"column col-50 coffee-item-name\">" + coffee.name + "</span>";
+    li += "<span class=\"column col-50 coffee-item-roast "+ applyRandomClassFrom(styles) +"\">"
+          + coffee.roast
+        + "</span>";
+    li += "</div>\n";
     return li;
 }
 
 // renders the html for an entire list of coffee items
-function renderCoffeeList(coffeeList) {
+function renderCoffeeList(coffeeList, styles) {
     var ul = "<ul>\n";
     coffeeList.forEach(function(item){
-      ul += renderCoffeeItem(item);
+      ul += renderCoffeeItem(item, styles);
     });
     ul += "</ul>";
     return ul;
@@ -43,11 +63,11 @@ function newBtnListener(id){
 
 }
 
-function updateCoffeeList(table) {
+function updateCoffeeList(table, styles) {
     var leftCol = document.getElementById("coffee-list-col-0");
     var rightCol = document.getElementById("coffee-list-col-1");
-    leftCol.innerHTML = renderCoffeeList(table.leftCol);
-    rightCol.innerHTML = renderCoffeeList(table.rightCol);
+    leftCol.innerHTML = renderCoffeeList(table.leftCol, styles);
+    rightCol.innerHTML = renderCoffeeList(table.rightCol, styles);
 }
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
@@ -68,5 +88,18 @@ var coffees = [
     {id: 14, name: 'French', roast: 'dark'},
 ];
 
+var styles = [
+    'roast-option0',
+    'roast-option1',
+    'roast-option2',
+    'roast-option3',
+    'roast-option4',
+    'roast-option5',
+    'roast-option6',
+];
+
 // render the coffee table upon page load
-updateCoffeeList(initCoffeeTable(coffees));
+updateCoffeeList(initCoffeeTable(coffees), styles);
+
+// Do this to generate a random number:
+//  for(var i = 0; i < 10; i ++){console.log(Math.floor(Math.random() * 10));}

@@ -33,7 +33,6 @@ input {
     border-radius: 4px;
     border-width: 2px;
     border-color: #C9DBDB;
-
 }
 
 input:hover
@@ -59,6 +58,10 @@ hr {
   width: 100%;
 }
 
+.row-48 {
+  height: 48px;
+}
+
 .column {
   float: left;
   padding: 10px;
@@ -66,7 +69,7 @@ hr {
 
 .column.col-50 {
   width: 50%;
-  padding: 0.5%;
+  padding: 2%;
 }
 .column.col-25 {
   width: 25%;
@@ -84,18 +87,15 @@ hr {
 .btn {
   color: white;
   background-color: #405080;
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 10px;
-  /* border-width: 4px;
-  border-color: #000000; */
-  border-width: 4px;
+  border-width: 2px;
   border-color: white;
   border-style: solid;
 }
 
 .btn:hover {
-  /* transform: scale(0.95); */
-  border-width: 4px;
+  border-width: 2px;
   border-color: #88A9A9 !important;
   border-style: solid;
 }
@@ -110,17 +110,44 @@ hr {
 {
     font-size: large;
     font-weight: bold;
+    /* width: 50%; */
 }
 
 .coffee-item-roast
 {
-    font-size: small;
-    opacity: 0.5;
+    font-size: 14px;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    padding: 4px 4px 4px 4px;
+    background-color: #EEEEEE;
+}
+
+.coffee-item-roast:hover {
+  border-width: 2px 2px 2px 2px;
+  background-color: #EEFEFE;
+  transform: scale(1.05);
 }
 
 /*
 
-new -> make an object on the heap
-init -> make an opject on the stack
+================= Random Sytles ================================================
 
 */
+
+.roast-option0{
+  transform: rotate(1deg);
+}
+.roast-option1{
+  transform: rotate(2deg);
+}
+.roast-option2{
+  transform: rotate(3deg);
+}
+.roast-option3{
+  transform: rotate(364deg);
+}
+.roast-option4{
+  transform: rotate(363deg);
+}
+.roast-option5{
+  transform: rotate(362deg);
