@@ -4,11 +4,6 @@
 function applyRandomClassFrom(styles){
   var r = Math.floor( (Math.random()*100)%6 + 1) -1;
   /* debug */ console.log(r);
-  /* debug */
-  /* debug */
-  /* debug */
-  /* debug */
-  /* debug */
   return styles[r];
 }
 
@@ -55,45 +50,29 @@ function initCoffeeTable(coffeeList){
   return coffeeTable;
 }
 
-var textEvent = function textFieldListener(id){
-    console.log(id);
+var textfieldSelect = function textFieldListener(id){
 
+    switch(id.explicitOriginalTarget.id){
+      case "rSearch0":
+        console.log("0");
+        break;
+      case "rSearch1":
+        console.log("1");
+        break;
+    }
 }
 
-var btnEvent = function btnListener(id){
-    console.log(id);
+var btnSelect = function btnListener(id){
+
+  switch(id.explicitOriginalTarget.id){
+    case "submBtn0":
+      console.log("0");
+      break;
+    case "submBtn1":
+      console.log("1");
+      break;
+  }
 }
-
-// Variables to sort by input and button ID's, to input them into click listeners and eventually keypress listeners
-
-var inputListener = document.getElementById('rSearch0');
-
-var btnEListener = document.getElementById('submBtn');
-
-
-var inputListener1 = document.getElementById('rSearch1');
-
-var btnEListener1 = document.getElementById('submBtn1');
-
-
-inputListener.addEventListener('click', textEvent, false);
-    console.log(inputListener);
-
-btnEListener.addEventListener('click', btnEvent, false);
-    console.log(btnEListener);
-
-inputListener1.addEventListener('click', textEvent, false);
-console.log(inputListener);
-
-btnEListener1.addEventListener('click', btnEvent, false);
-console.log(btnEListener);
-
-
-// inputListener.addEventListener(onkeyup, function()
-// {
-//
-//     console.log(iLis);
-// });
 
 function updateCoffeeList(table, styles) {
     var leftCol = document.getElementById("coffee-list-col-0");
@@ -133,5 +112,19 @@ var styles = [
 // render the coffee table upon page load
 updateCoffeeList(initCoffeeTable(coffees), styles);
 
-// Do this to generate a random number:
-//  for(var i = 0; i < 10; i ++){console.log(Math.floor(Math.random() * 10));}
+// Variables to sort by input and button ID's, to input them into click listeners and eventually keypress listeners
+
+var inputListener = document.getElementById('rSearch0');
+var btnEListener = document.getElementById('submBtn0');
+
+var inputListener1 = document.getElementById('rSearch1');
+var btnEListener1 = document.getElementById('submBtn1');
+
+inputListener.addEventListener('click', textfieldSelect, false);
+//console.log(inputListener);
+btnEListener.addEventListener('click', btnSelect, false);
+//console.log(btnEListener);
+inputListener1.addEventListener('click', textfieldSelect, false);
+//console.log(inputListener);
+btnEListener1.addEventListener('click', btnSelect, false);
+//console.log(btnEListener);
