@@ -50,6 +50,15 @@ function initCoffeeTable(coffeeList){
   return coffeeTable;
 }
 
+// Don't move this object
+// The following listeners will create objects or search for objects based on
+//  the state of this object.
+// It gets updated in the dropdownListener(...) function
+var dropdownSelectState = {
+  type: "",
+  option: "",
+}
+
 var textfieldSelect = function textFieldListener(event){
     switch(event.target.id){
       case "rSearch0":
@@ -68,29 +77,35 @@ var btnSelect = function btnListener(event){
   switch(event.target.id){
     case "submBtn0":
       /* debug */console.log("0");
-      // 1. grab the roast id (no id yet)
-    var selectRoast0 = document.getElementById('selectR0');
-    var roastType0 = document.getElementById('lightR');
-    var inputValue0 = document.getElementById('rSearch0').value;
-       console.log(inputValue0);
-       console.log(roastType0);
-       console.log(event.target.id);
-      // 2. grab the value of the text field
-      // 3. run the search function and updateCoffeeList(...)
+      var selectRoast0 = document.getElementById('selectR0');
+      var inputValue0 = document.getElementById('rSearch0').value;
+      console.log(inputValue0);
+      console.log(event.target.id);
       break;
     case "submBtn1":
       /* debug */console.log("1");
       // 1. grab the roast id (no id yet)
-    var selectRoast1 = document.getElementById('selectR1');
+      var selectRoast1 = document.getElementById('selectR1');
       // 2. grab the value of the text field
-    var inputValue1 = document.getElementById('rSearch1').value;
-        console.log(inputValue1);
+      var inputValue1 = document.getElementById('rSearch1').value;
+      console.log(inputValue1);
       // 3. make a coffee object and add it to the list - coffees
       break;
     default:
       /* debug */console.log('option not found');
       break;
   }
+}
+
+// updates the dropdownSelectState object
+var dropdownSelect = function dropdownListener(event){
+
+  dropdownSelectState = {
+    type: event.target.name,
+    option: event.target.value,
+  }
+
+  console.log(dropdownSelectState);
 }
 
 function updateCoffeeList(table, styles) {
@@ -148,3 +163,8 @@ inputListener1.addEventListener('click', textfieldSelect, false);
 btnEListener1.addEventListener('click', btnSelect, false);
 //console.log(btnEListener);
 
+// watch the dropdown menue
+document.addEventListener("DOMContentLoaded", function(){
+  document.querySelector("select[name='roast-types-search']").onchange=dropdownSelect;
+  document.querySelector("select[name='roast-types-add']").onchange=dropdownSelect;
+}, false);
