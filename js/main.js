@@ -55,8 +55,12 @@ function initCoffeeTable(coffeeList){
 //  the state of this object.
 // It gets updated in the dropdownListener(...) function
 var dropdownSelectState = {
-  type: "",
-  option: "",
+  search: {
+    option: "",
+  },
+  add: {
+    option: "",
+  },
 }
 
 var textfieldSelect = function textFieldListener(event){
@@ -75,44 +79,35 @@ var textfieldSelect = function textFieldListener(event){
 
 var btnSelect = function btnListener(event){
   switch(event.target.id){
+    // search for a coffee
     case "submBtn0":
-
-      // var selectRoast0 = document.getElementById('selectR0');
-      // var inputValue0 = document.getElementById('rSearch0').value;
-
-      // console.log(inputValue0);
-      // console.log(event.target.id);
-      // console.log(dropdownSelectState);
 
       var query = {
         str: document.getElementById('rSearch0').value.toLowerCase(),
-        option: dropdownSelectState.option,
-      }
-      searchCoffees(query, coffees);
-
-      break;
-    case "submBtn1":
-
-      // 1. grab the roast id (no id yet)
-      var selectRoast1 = document.getElementById('selectR1');
-      // 2. grab the value of the text field
-      var inputValue1 = document.getElementById('rSearch1').value;
-
-      console.log(inputValue1);
-      console.log(event.target.id);
-      console.log(dropdownSelectState);
-
-      // 3. make a coffee object and add it to the list - coffees
-      var coffee = {
-        name: document.getElementById('rSearch1').value,
-        roast: dropdownSelectState.option,
+        option: dropdownSelectState.search.option,
       };
 
-      addCoffee(coffees, coffee);
+      searchCoffees(query, coffees);
       updateCoffeeList(initCoffeeTable(coffees), styles);
       break;
+    // add a coffee
+    case "submBtn1":
+
+      if(dropdownSelectState.add.option === "") {
+        alert("Please select an option from the dropdown list");
+      }
+      else {
+        var coffee = {
+          name: document.getElementById('rSearch1').value,
+          roast: dropdownSelectState.add.option,
+        };
+
+        addCoffee(coffees, coffee);
+        updateCoffeeList(initCoffeeTable(coffees), styles);
+      }
+      break;
     default:
-      /* debug */console.log('option not found');
+      alert('option not found');
       break;
   }
 }
@@ -120,9 +115,15 @@ var btnSelect = function btnListener(event){
 // updates the dropdownSelectState object
 var dropdownSelect = function dropdownListener(event){
 
-  dropdownSelectState = {
-    type: event.target.name,
-    option: event.target.value,
+  console.log(event.target);
+
+  switch(event.target.name){
+    case "roast-types-search":
+      dropdownSelectState.search.option = event.target.value;
+      break;
+    case "roast-types-add":
+      dropdownSelectState.add.option = event.target.value;
+      break;
   }
 
   console.log(dropdownSelectState);
@@ -202,23 +203,18 @@ var styles = [
 // render the coffee table upon page load
 updateCoffeeList(initCoffeeTable(coffees), styles);
 
-// Variables to sort by input and button ID's, to input them into click listeners and eventually keypress listeners
-
+// Variables to sort by input and button ID's,
+// to input them into click listeners and eventually keypress listeners
 var inputListener0 = document.getElementById('rSearch0');
 var btnEListener0 = document.getElementById('submBtn0');
 
 var inputListener1 = document.getElementById('rSearch1');
 var btnEListener1 = document.getElementById('submBtn1');
 
-//inputListener.addEventListener('click', textfieldSelect, false);
-
 btnEListener0.addEventListener('click', btnSelect, false);
-
-//inputListener1.addEventListener('click', textfieldSelect, false);
-
 btnEListener1.addEventListener('click', btnSelect, false);
 
-// watch the dropdown menue
+// watch the dropdown menu
 document.addEventListener("DOMContentLoaded", function(){
   document.querySelector("select[name='roast-types-search']").onchange=dropdownSelect;
   document.querySelector("select[name='roast-types-add']").onchange=dropdownSelect;
@@ -228,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function(){
 inputListener0.addEventListener('keyup', function(event){
   var query = {
     str: document.getElementById(event.target.id).value.toLowerCase(),
-    option: dropdownSelectState.option,
+    option: dropdownSelectState.search.option,
   };
 
   console.log(query);
