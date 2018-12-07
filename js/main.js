@@ -35,6 +35,14 @@ function initCoffeeTable(coffeeList){
   return coffeeTable;
 }
 
+function newTextFieldListener(id){
+
+}
+
+function newBtnListener(id){
+
+}
+
 function updateCoffeeList(table) {
     var leftCol = document.getElementById("coffee-list-col-0");
     var rightCol = document.getElementById("coffee-list-col-1");
@@ -62,10 +70,3 @@ var coffees = [
 
 // render the coffee table upon page load
 updateCoffeeList(initCoffeeTable(coffees));
-// var tbody = document.querySelector('#coffees');
-// var submitButton = document.querySelector('#submit');
-// var roastSelection = document.querySelector('#roast-selection');
-//
-// tbody.innerHTML = renderCoffees(coffees);
-//
-// submitButton.addEventListener('click', updateCoffees);
