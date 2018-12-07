@@ -55,13 +55,45 @@ function initCoffeeTable(coffeeList){
   return coffeeTable;
 }
 
-function newTextFieldListener(id){
+var textEvent = function textFieldListener(id){
+    console.log(id);
 
 }
 
-function newBtnListener(id){
-
+var btnEvent = function btnListener(id){
+    console.log(id);
 }
+
+// Variables to sort by input and button ID's, to input them into click listeners and eventually keypress listeners
+
+var inputListener = document.getElementById('rSearch0');
+
+var btnEListener = document.getElementById('submBtn');
+
+
+var inputListener1 = document.getElementById('rSearch1');
+
+var btnEListener1 = document.getElementById('submBtn1');
+
+
+inputListener.addEventListener('click', textEvent, false);
+    console.log(inputListener);
+
+btnEListener.addEventListener('click', btnEvent, false);
+    console.log(btnEListener);
+
+inputListener1.addEventListener('click', textEvent, false);
+console.log(inputListener);
+
+btnEListener1.addEventListener('click', btnEvent, false);
+console.log(btnEListener);
+
+
+// inputListener.addEventListener(onkeyup, function()
+// {
+//
+//     console.log(iLis);
+// });
 
 function updateCoffeeList(table, styles) {
     var leftCol = document.getElementById("coffee-list-col-0");
