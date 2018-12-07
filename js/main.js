@@ -84,6 +84,12 @@ var btnSelect = function btnListener(event){
       console.log(event.target.id);
       console.log(dropdownSelectState);
 
+      var query = {
+        str: document.getElementById('rSearch0').value.toLowerCase(),
+        option: dropdownSelectState.option,
+      }
+      searchCoffees(query, coffees);
+
       break;
     case "submBtn1":
 
