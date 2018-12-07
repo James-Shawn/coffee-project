@@ -41,13 +41,17 @@ var styles = [
     'roast-option6',
 ];
 
+
+// this function is a subcomponant of a loop
+function applyRandomClassFrom(styles){
+    var r = Math.floor( (Math.random()*100)%6 + 1) -1;
+    /* debug */ console.log(r);
+    return styles[r];
+}
+
 // renders the html for each individual coffee item
 // This function is a mini css compiler
 function renderCoffeeItem(coffee, styles) {
-
-    // debug
-    var randclass = "";
-    // end
 
     var li = "<div class=\"row-48 coffee-item\">\n";
     li += "<span class=\"column col-50 coffee-item-name\">" + coffee.name + "</span>";
@@ -58,15 +62,24 @@ function renderCoffeeItem(coffee, styles) {
     return li;
 }
 
-// this function is a subcomponant of a loop
-function applyRandomClassFrom(styles){
-    var r = Math.floor( (Math.random()*100)%6 + 1) -1;
-    /* debug */ console.log(r);
-    return styles[r];
+// renders the html for an entire list of coffee items
+function renderCoffeeList(coffeeList, styles) {
+    var ul = "<div class=\"row coffee-item\">\n";
+    coffeeList.forEach(function(item){
+      ul += renderCoffeeItem(item, styles);
+    });
+    ul += "</div>";
+    return ul;
+}
+
+function updateCoffeeList(table, styles) {
+    var leftCol = document.getElementById("coffee-list-col-0");
+    var rightCol = document.getElementById("coffee-list-col-1");
+    leftCol.innerHTML = renderCoffeeList(table.leftCol, styles);
+    rightCol.innerHTML = renderCoffeeList(table.rightCol, styles);
 }
 
 //Assigns the coffee items to columns
-
 function initCoffeeTable(coffeeList){
     var coffeeTable = {
         rightCol: [],
@@ -95,51 +108,46 @@ function initdropdownSelectState(){
     }
 }
 
-
-
-// renders the html for an entire list of coffee items
-function renderCoffeeList(coffeeList, styles) {
-    var ul = "<div class=\"row coffee-item\">\n";
-    coffeeList.forEach(function(item){
-      ul += renderCoffeeItem(item, styles);
-    });
-    ul += "</div>";
-    return ul;
-}
-
-
-function updateCoffeeList(table, styles) {
-    var leftCol = document.getElementById("coffee-list-col-0");
-    var rightCol = document.getElementById("coffee-list-col-1");
-    leftCol.innerHTML = renderCoffeeList(table.leftCol, styles);
-    rightCol.innerHTML = renderCoffeeList(table.rightCol, styles);
-}
-
-
 // updates the dropdownSelectState object
 var dropdownSelect = function dropdownListener(event){
-
     console.log(event.target);
 
     switch(event.target.name){
         case "roast-types-search":
             dropdownSelectState.search.option = event.target.value;
+            var sublist = searchCoffees({
+              str: "",
+              option: dropdownSelectState.search.option,
+            }, coffees);
+            updateCoffeeList(initCoffeeTable(sublist), styles);
             break;
         case "roast-types-add":
             dropdownSelectState.add.option = event.target.value;
             break;
     }
-
     console.log(dropdownSelectState);
 }
 
-
 function searchCoffees(query, coffeeList){
 
+    console.log(query);
     var result = [];
 
     if(query.option == ""){
         alert("Please select from: all, light, medium, or dark.");
+    }
+    else if(query.str == "" && query.option != "All"){
+      coffeeList.forEach(function(coffee){
+        if(coffee.roast === query.option
+          .substring(0, query.option.indexOf(' '))
+          .toLowerCase())
+          {
+            result.push(coffee);
+          }
+      });
+    }
+    else if(query.str == "" && query.option === "All"){
+      result = coffeeList;
     }
     else if(query.option == "All"){
         coffeeList.forEach(function(coffee){
@@ -156,7 +164,11 @@ function searchCoffees(query, coffeeList){
     else {
         coffeeList.forEach(function(coffee){
             if( (coffee.name.toLowerCase().substring(0, query.str.length) === query.str)
-                && (coffee.roast === query.option)
+                && (coffee.roast === query
+                  .option
+                  .substring(0, query.option.indexOf(' '))
+                  .toLowerCase()
+                )
             ){
                 result.push(coffee);
             }
@@ -180,8 +192,9 @@ var btnSelect = function btnListener(event){
         option: dropdownSelectState.search.option,
       };
 
-      searchCoffees(query, coffees);
-      updateCoffeeList(initCoffeeTable(coffees), styles);
+      var sublist = searchCoffees(query, coffees);
+      console.log(sublist);
+      updateCoffeeList(initCoffeeTable(sublist), styles);
       break;
     // add a coffee
     case "submBtn1":
