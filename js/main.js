@@ -123,6 +123,38 @@ function updateCoffeeList(table, styles) {
     rightCol.innerHTML = renderCoffeeList(table.rightCol, styles);
 }
 
+function searchCoffees(query, coffeeList){
+
+  var result = [];
+
+  if(query.option == ""){
+    alert("Please select from: all, light, medium, or dark.");
+  }
+  else if(query.option == "All"){
+    coffeeList.forEach(function(coffee){
+      if(coffee
+          .name
+          .toLowerCase()
+          .substring(0, query.str.length)
+          === query.str
+        ){
+          result.push(coffee);
+        }
+    });
+  }
+  else {
+    coffeeList.forEach(function(coffee){
+      if( (coffee.name.toLowerCase().substring(0, query.str.length) === query.str)
+          && (coffee.roast === query.option)
+        ){
+          result.push(coffee);
+        }
+    });
+  }
+
+  return result;
+}
+
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
 var coffees = [
     {id: 1, name: 'Light City', roast: 'light'},
@@ -176,8 +208,15 @@ document.addEventListener("DOMContentLoaded", function(){
   document.querySelector("select[name='roast-types-add']").onchange=dropdownSelect;
 }, false);
 
+// Listens to the top-most text field
 inputListener0.addEventListener('keyup', function(event){
-  console.log(
-    document.getElementById(event.target.id)
-    .value);
+  var query = {
+    str: document.getElementById(event.target.id).value.toLowerCase(),
+    option: dropdownSelectState.option,
+  };
+
+  console.log(query);
+  var results = searchCoffees(query, coffees);
+  console.log(results);
+  updateCoffeeList(initCoffeeTable(results), styles);
 }, false);
