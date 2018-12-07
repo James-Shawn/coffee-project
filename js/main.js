@@ -77,12 +77,12 @@ var btnSelect = function btnListener(event){
   switch(event.target.id){
     case "submBtn0":
 
-      var selectRoast0 = document.getElementById('selectR0');
-      var inputValue0 = document.getElementById('rSearch0').value;
+      // var selectRoast0 = document.getElementById('selectR0');
+      // var inputValue0 = document.getElementById('rSearch0').value;
 
-      console.log(inputValue0);
-      console.log(event.target.id);
-      console.log(dropdownSelectState);
+      // console.log(inputValue0);
+      // console.log(event.target.id);
+      // console.log(dropdownSelectState);
 
       var query = {
         str: document.getElementById('rSearch0').value.toLowerCase(),
@@ -103,7 +103,13 @@ var btnSelect = function btnListener(event){
       console.log(dropdownSelectState);
 
       // 3. make a coffee object and add it to the list - coffees
+      var coffee = {
+        name: document.getElementById('rSearch1').value,
+        roast: dropdownSelectState.option,
+      };
 
+      addCoffee(coffees, coffee);
+      updateCoffeeList(initCoffeeTable(coffees), styles);
       break;
     default:
       /* debug */console.log('option not found');
@@ -159,6 +165,10 @@ function searchCoffees(query, coffeeList){
   }
 
   return result;
+}
+
+function addCoffee(coffeeList, coffee){
+  coffeeList.push(coffee);
 }
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
