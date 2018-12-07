@@ -53,26 +53,34 @@ function initCoffeeTable(coffeeList){
 var textfieldSelect = function textFieldListener(event){
     switch(event.target.id){
       case "rSearch0":
-        console.log("0");
+        /* debug */console.log("0");
         break;
       case "rSearch1":
-        console.log("1");
+        /* debug */console.log("1");
         break;
       default:
-        console.log('option not found');
+        /* debug */console.log('option not found');
+        break;
     }
 }
 
 var btnSelect = function btnListener(event){
   switch(event.target.id){
     case "submBtn0":
-      console.log("0");
+      /* debug */console.log("0");
+      // 1. grab the roast id (no id yet)
+      // 2. grab the value of the text field
+      // 3. run the search function and updateCoffeeList(...)
       break;
     case "submBtn1":
-      console.log("1");
+      /* debug */console.log("1");
+      // 1. grab the roast id (no id yet)
+      // 2. grab the value of the text field
+      // 3. make a coffee object and add it to the list - coffees
       break;
     default:
-      console.log('option not found');
+      /* debug */console.log('option not found');
+      break;
   }
 }
 
@@ -131,11 +139,11 @@ inputListener1.addEventListener('click', textfieldSelect, false);
 btnEListener1.addEventListener('click', btnSelect, false);
 //console.log(btnEListener);
 
-// var inputTextListener = document.getElementById('rSearch0');
-//
-// inputTextListener.addEventListener('onkeyup', function(){
-//
-//     var inputText = document.querySelector('input[name="Roast Search"]').value.onchange= changeEventHandler;
-//     console.log(inputText);
-//
-// }, false);
+var inputTextListener = document.getElementById('rSearch0');
+
+inputTextListener.addEventListener('onkeyup', function(){
+
+    var inputText = document.querySelector('input[name="Roast Search"]').value.onchange= changeEventHandler;
+    console.log(inputText);
+
+}, false);
