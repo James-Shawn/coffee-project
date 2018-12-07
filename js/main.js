@@ -69,13 +69,22 @@ var btnSelect = function btnListener(event){
     case "submBtn0":
       /* debug */console.log("0");
       // 1. grab the roast id (no id yet)
+    var selectRoast0 = document.getElementById('selectR0');
+    var roastType0 = document.getElementById('lightR');
+    var inputValue0 = document.getElementById('rSearch0').value;
+       console.log(inputValue0);
+       console.log(roastType0);
+       console.log(event.target.id);
       // 2. grab the value of the text field
       // 3. run the search function and updateCoffeeList(...)
       break;
     case "submBtn1":
       /* debug */console.log("1");
       // 1. grab the roast id (no id yet)
+    var selectRoast1 = document.getElementById('selectR1');
       // 2. grab the value of the text field
+    var inputValue1 = document.getElementById('rSearch1').value;
+        console.log(inputValue1);
       // 3. make a coffee object and add it to the list - coffees
       break;
     default:
@@ -139,11 +148,3 @@ inputListener1.addEventListener('click', textfieldSelect, false);
 btnEListener1.addEventListener('click', btnSelect, false);
 //console.log(btnEListener);
 
-var inputTextListener = document.getElementById('rSearch0');
-
-inputTextListener.addEventListener('onkeyup', function(){
-
-    var inputText = document.querySelector('input[name="Roast Search"]').value.onchange= changeEventHandler;
-    console.log(inputText);
-
-}, false);
